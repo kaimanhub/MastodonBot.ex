@@ -122,7 +122,7 @@ We welcome contributions to MastodonBotEx! If you have an idea for a feature or 
 
 We welcome contributions to MastodonBotEx! To maintain a clear and organized development process, we ask that every pull request (PR) is linked to an existing issue or enhancement request.
 
-1. **Check Existing Issues:** Before starting any work, please check the [Issues](https://github.com/your-repo/issues) section to see if your enhancement or bug fix is already being discussed.
+1. **Check Existing Issues:** Before starting any work, please check the [Issues](https://github.com/kaimanhub/MastodonBot.ex/issues) section to see if your enhancement or bug fix is already being discussed.
 2. **Create an Issue:** If your contribution idea isn't covered, create a new issue or enhancement request.
 3. **Fork the Repository:** Once the issue is created, fork the repository.
 4. **Create a New Branch:** Create a branch with a descriptive name (`git checkout -b issue-123-feature-branch`), where `issue-123` references the issue number.
