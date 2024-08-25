@@ -12,7 +12,7 @@ defmodule MastodonBotEx.StreamingClient do
   def stream_user_notifications do
     url = "/streaming/user/notification"
 
-    Logger.info("On start of user stream")
+    Logger.info("On start of user stream.")
     get!(client(), url, opts: [adapter: @adapter_opts])
   end
 
@@ -31,7 +31,7 @@ defmodule MastodonBotEx.StreamingClient do
        ]},
       {Tesla.Middleware.BearerAuth, token: token},
       Tesla.Middleware.DecodeJson,
-      Tesla.Middleware.Logger,
+      Tesla.Middleware.Retry,
       Tesla.Middleware.FormUrlencoded
     ]
 
