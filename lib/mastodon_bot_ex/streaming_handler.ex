@@ -24,6 +24,7 @@ defmodule MastodonBotEx.StreamingHandler do
   end
 
   defp handle_json_data({:ok, data}, account_id) do
+    Logger.debug("Porocessing received status data.")
     result = MastodonBotEx.NotificationParser.extract_message_details(data)
     sender_id = result[:sender_id]
     channel_id = result[:channel_id]
@@ -43,7 +44,7 @@ defmodule MastodonBotEx.StreamingHandler do
         """,
         channel_id
       )
-
+      Logger.debug("Message succesfully processed.")
       Process.sleep(:timer.seconds(2))
     else
       Logger.error("Data does match the current account ID.")
@@ -51,14 +52,14 @@ defmodule MastodonBotEx.StreamingHandler do
   end
 
   defp handle_json_data({:error, reason}, _account_id) do
-    Logger.info("Incomplete or malformed JSON. Reason: #{inspect(reason)}")
+    Logger.info("Incomplete or malformed JSON. Reason: #{inspect(reason)}.")
   end
 
   defp handle_unknown_data(line) do
-    Logger.debug("Unknown data received: #{line}")
+    Logger.debug("Unknown data received: #{line}.")
   end
 
   defp handle_heartbeat() do
-    Logger.debug("Heartbeat data received")
+    Logger.debug("Heartbeat data received.")
   end
 end
