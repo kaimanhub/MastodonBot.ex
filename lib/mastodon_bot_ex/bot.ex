@@ -18,24 +18,33 @@ defmodule MastodonBotEx.Bot do
     )
   end
 
-  @doc "Post a status with a private visibility"
-  def post_status(client, status_message, nil) do
+  def post_status(client, status_message) do
+    # TODO: need to make params as input instead of managign if inside
     params = %{
       "status" => status_message,
-      "visibility" => "private"
+      "visibility" => "public"
     }
 
-    do_post(client, params)
+    %{status: 200} = do_post(client, params)
   end
 
-  def post_status(client, status_message, status_is) do
+  def post_status(client, status_message, status_id) do
     params = %{
       "status" => status_message,
       "visibility" => "direct",
-      "in_reply_to_id" => status_is
+      "in_reply_to_id" => status_id
     }
 
-    do_post(client, params)
+    %{status: 200} = do_post(client, params)
+  end
+
+  def post_direct_message(client, message, user_acct) do
+    params = %{
+      "status" => "#{user_acct} #{message}",
+      "visibility" => "direct"
+    }
+
+    %{status: 200} = do_post(client, params)
   end
 
   @doc "Dismiss a notification by its ID"

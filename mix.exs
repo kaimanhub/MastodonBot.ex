@@ -4,7 +4,7 @@ defmodule MastodonBotEx.MixProject do
   def project do
     [
       app: :mastodon_bot_ex,
-      version: "1.0.0",
+      version: "1.1.0",
       elixir: "~> 1.16",
       start_permanent: Mix.env() == :prod,
       deps: deps()
@@ -27,7 +27,10 @@ defmodule MastodonBotEx.MixProject do
       {:dotenv, "~> 3.1"},
       {:finch, "~> 0.18"},
       {:floki, "~> 0.36"},
-      {:gen_stage, "~> 1.2"}
+      {:gen_stage, "~> 1.2"},
+      {:ecto_sql, "~> 3.12"},
+      {:ecto_sqlite3, "~> 0.17"},
+      {:nimble_parsec, "~> 1.4"}
     ]
   end
 end

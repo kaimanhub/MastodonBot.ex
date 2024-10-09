@@ -13,6 +13,7 @@
 - [Usage](#usage)
   - [Streaming Client](#streaming-client)
   - [Notification Handler](#notification-handler)
+  - [Repository Watcher](#repository-watcher)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -34,7 +35,7 @@ To include MastodonBotEx in your project, add it to your `mix.exs` dependencies:
 ```elixir
 defp deps do
   [
-    {:mastodon_bot_ex, "~> 1.0.0"}
+    {:mastodon_bot_ex, "~> 1.1.0"}
   ]
 end
 ```
@@ -113,6 +114,10 @@ data = %{"account" => %{"id" => "456", "acct" => "user"}, "status" => %{"id" => 
 details = MastodonBotEx.NotificationParser.extract_message_details(data)
 IO.inspect(details)
 ```
+
+### Repository Watcher
+
+For detailed usage of the Repository Watcher functionality, please refer to the [Repository Watcher Documentation](REPO_WATCHER.md).
 
 ## Contributing
 

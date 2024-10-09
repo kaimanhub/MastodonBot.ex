@@ -7,6 +7,8 @@ defmodule MastodonBotEx.Application do
     Supervisor.start_link(
       [
         {Finch, name: MyFinch},
+        MastodonBotEx.Repo,
+        MastodonBotEx.RepoWatcher.OpenSourceUpdates,
         MastodonBotEx.NestedSupervisor
       ],
       strategy: :one_for_one
