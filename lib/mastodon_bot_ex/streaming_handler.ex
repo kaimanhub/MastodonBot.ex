@@ -31,19 +31,38 @@ defmodule MastodonBotEx.StreamingHandler do
     sender_name = result[:sender_name]
     notification_id = result[:notification_id]
 
+    sendr_map = %{
+      status_id: channel_id,
+      user: sender_name
+    }
+
     if sender_id != account_id do
       client = MastodonBotEx.StreamingClient.client()
       MastodonBotEx.Bot.dismiss_notification(client, notification_id)
 
-      MastodonBotEx.Bot.post_status(
-        client,
-        """
-        Greetings from Kaiman!
-        I'm the Kaiman Assistant, here to help.
-        How can I assist you today? #{sender_name}
-        """,
-        channel_id
-      )
+      message_text = result.message_text
+      lines = String.split(message_text, "\n", trim: true)
+
+      Enum.each(lines, fn line ->
+        case MastodonBotEx.RepoWatcher.RepoCommandParser.line(line) do
+          {:ok, parsed_result, "", _, _, _} ->
+            MastodonBotEx.RepoWatcher.RepoCommandHandler.handle_parsed_command(
+              client,
+              parsed_result,
+              sendr_map
+            )
+
+          {:error, _reason, _, _, _, _} ->
+            Logger.debug("Failed to parse line: #{line}")
+
+            MastodonBotEx.Bot.post_status(
+              client,
+              "Sorry, I didn't understand: #{line}",
+              channel_id
+            )
+        end
+      end)
+
       Logger.debug("Message succesfully processed.")
       Process.sleep(:timer.seconds(2))
     else

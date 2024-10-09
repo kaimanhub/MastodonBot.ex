@@ -24,6 +24,10 @@ defmodule MastodonBotEx.Producer do
 
   @impl GenStage
   @doc "Handle incoming data from the stream, split it into events"
+  def handle_info({_, {_, {:error, %Mint.TransportError{reason: :closed}}}}, state) do
+    {:stop, {:shutdown, :transport_closed}, state}
+  end
+
   def handle_info({_, {:data, data}}, {queue, acc, pending_demand}) do
     acc = acc <> data
 

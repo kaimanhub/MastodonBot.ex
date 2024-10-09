@@ -13,6 +13,7 @@ English documentation is here [README](README.md).
 - [Використання](#використання)
   - [Клієнт для стрімінгу](#клієнт-для-стрімінгу)
   - [Обробник сповіщень](#обробник-сповіщень)
+  - [Спостерігач Репозиторіїв](#cпостерігач-репозиторіїв)
 - [Співпраця](#співпраця)
 - [Ліцензія](#ліцензія)
 
@@ -34,7 +35,7 @@ MastodonBotEx розроблений для спрощення процесу в
 ```elixir
 defp deps do
   [
-    {:mastodon_bot_ex, "~> 0.1.0"}
+    {:mastodon_bot_ex, "~> 1.1.0"}
   ]
 end
 ```
@@ -101,6 +102,10 @@ MastodonBotEx.StreamingClient.stream_user_notifications()
 line = "data: {\"id\":\"123\", \"account\": {\"id\": \"456\", \"acct\": \"user\"}, \"status\": {\"id\": \"789\", \"content\": \"Hello!\"}}"
 MastodonBotEx.StreamingHandler.process_line(line, "your_account_id")
 ```
+
+### Спостерігач Репозиторіїв
+
+Для детальнішого використання функціональності Спостерігача Репозиторіїв, будь ласка читайте [Документація для Спостерігача Репозиторіїв](REPO_WATCHER_UA.md).
 
 ### Парсер сповіщень
 

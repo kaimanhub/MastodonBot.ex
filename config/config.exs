@@ -9,3 +9,7 @@ config :logger,
 # Налаштовує Tesla для використання Finch як HTTP-адаптера з заданим ім'ям
 config :tesla,
   adapter: {Tesla.Adapter.Finch, name: MyFinch}
+
+config :mastodon_bot_ex, MastodonBotEx.Repo,
+  database: "mastodon_bot.db",
+  pool_size: 5
