@@ -203,9 +203,14 @@ end
 Ensure all migrations are run to set up the database schemas for `RepoCheck` and `UserRepoCheck`. You can generate and run migrations using the following commands:
 
 ```sh
-mix ecto.gen.migration create_repo_checks
-mix ecto.gen.migration create_user_repo_checks
+mix ecto.create
 mix ecto.migrate
+```
+
+Note: to drop database you can run following command:
+
+```sh
+mix ecto.drop
 ```
 
 ### 2. Environment Variables

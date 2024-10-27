@@ -204,9 +204,14 @@ end
 Переконайтеся, що всі міграції виконані для налаштування схем бази даних `RepoCheck` та `UserRepoCheck`. Ви можете згенерувати та виконати міграції за допомогою наступних команд:
 
 ```sh
-mix ecto.gen.migration create_repo_checks
-mix ecto.gen.migration create_user_repo_checks
+mix ecto.create
 mix ecto.migrate
+```
+
+Примітка: щоб видалити базу даних, ви можете запустити таку команду:
+
+```sh
+mix ecto.drop
 ```
 
 ### 2. Змінні середовища
