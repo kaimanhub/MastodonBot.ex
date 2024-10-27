@@ -13,3 +13,6 @@ config :tesla,
 config :mastodon_bot_ex, MastodonBotEx.Repo,
   database: "mastodon_bot.db",
   pool_size: 5
+
+config :mastodon_bot_ex,
+  ecto_repos: [MastodonBotEx.Repo]

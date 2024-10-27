@@ -57,7 +57,7 @@ defmodule MastodonBotEx.StreamingHandler do
 
             MastodonBotEx.Bot.post_status(
               client,
-              "Sorry, I didn't understand: #{line}",
+              "Sorry, I didn't understand: #{line} #{sender_name}",
               channel_id
             )
         end

@@ -133,7 +133,7 @@ defmodule MastodonBotEx.RepoWatcher.OpenSourceUpdates do
     #{String.slice(release.body || "", 0, 300)}...
 
     Check it out and contribute! 🚀
-    #{get_repo_url(repo_check.repo)}
+    #{get_repo_url(repo_check.repo, release.tag_name)}
 
     """
 
@@ -156,8 +156,12 @@ defmodule MastodonBotEx.RepoWatcher.OpenSourceUpdates do
     |> Enum.join(" ")
   end
 
-  defp get_repo_url(repo) do
-    "https://github.com/#{repo}"
+  defp get_repo_url(repo, release) do
+    if release == "" do
+      "https://github.com/#{repo}"
+    else
+      "https://github.com/#{repo}/releases/tag/#{release}"
+    end
   end
 
   defp github_client do

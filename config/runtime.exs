@@ -1,5 +1,10 @@
 import Config
-Dotenv.load!()
+
+if Mix.env() == :test and File.exists?(".env.test") do
+  Dotenv.load!(".env.test")
+else
+  Dotenv.load!()
+end
 
 # Load environment variables from .env file
 # Завантажує змінні середовища з файлу .env

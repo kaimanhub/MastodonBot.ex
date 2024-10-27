@@ -13,10 +13,14 @@ defmodule MastodonBotEx.MixProject do
 
   # Run "mix help compile.app" to learn about applications.
   def application do
-    [
-      extra_applications: [:logger],
-      mod: {MastodonBotEx.Application, []}
-    ]
+    if Mix.env() != :test do
+      [
+        extra_applications: [:logger],
+        mod: {MastodonBotEx.Application, []}
+      ]
+    else
+      []
+    end
   end
 
   # Run "mix help deps" to learn about dependencies.
